@@ -1,6 +1,0 @@
-@JurJurMakerWebapi.Tests_HostAddress = http://localhost:5121
-
-GET {{JurJurMakerWebapi.Tests_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
