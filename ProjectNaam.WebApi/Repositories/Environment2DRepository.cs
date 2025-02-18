@@ -22,7 +22,7 @@ namespace JurJurMaker2D.WebApi.Repositories
             environments.Add(environment2D);
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                await sqlConnection.ExecuteAsync("INSERT INTO [dbo.Environment2D] (Id, name, maxheigth, maxlength) VALUES (@Id, @name, @maxheigth, @maxlength)", new { Id = id, name = Name, maxheigth = maxHeigth, maxlength = maxLength });
+                await sqlConnection.ExecuteAsync("INSERT INTO dbo.Environment2D (Id, name, maxheigth, maxlength) VALUES (@Id, @name, @maxheigth, @maxlength)", new { Id = id, name = Name, maxheigth = maxHeigth, maxlength = maxLength });
             }
             //en dan naar de database schrijven
         }
@@ -32,7 +32,7 @@ namespace JurJurMaker2D.WebApi.Repositories
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                return await sqlConnection.QuerySingleOrDefaultAsync<Environment2D>("SELECT * FROM [dbo.Environment2D] WHERE Id = @Id", new {Id = id});
+                return await sqlConnection.QuerySingleOrDefaultAsync<Environment2D>("SELECT * FROM dbo.Environment2D WHERE Id = @Id", new {Id = id});
             }
         }
 
@@ -41,7 +41,7 @@ namespace JurJurMaker2D.WebApi.Repositories
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                return await sqlConnection.QueryAsync<Environment2D>("SELECT * FROM [dbo.Environment2D]");
+                return await sqlConnection.QueryAsync<Environment2D>("SELECT * FROM dbo.Environment2D");
             }
         }
 
@@ -50,7 +50,7 @@ namespace JurJurMaker2D.WebApi.Repositories
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                await sqlConnection.ExecuteAsync("DELETE * FROM [dbo.Environment2D] WHERE Id = @Id", new { Id = id });
+                await sqlConnection.ExecuteAsync("DELETE * FROM dbo.Environment2D WHERE Id = @Id", new { Id = id });
             }
         }
 
@@ -65,7 +65,7 @@ namespace JurJurMaker2D.WebApi.Repositories
             environments.Add(environment);
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                await sqlConnection.ExecuteAsync("UPATE [dbo.Environment2D] SET (Id, name, maxheigth, maxlength) VALUES (@Id, @name, @maxheigth, @maxlength)", new { Id = id, name = Name, maxheigth = maxHeigth, maxlength = maxLength });
+                await sqlConnection.ExecuteAsync("UPATE dbo.Environment2D SET (Id, name, maxheigth, maxlength) VALUES (@Id, @name, @maxheigth, @maxlength)", new { Id = id, name = Name, maxheigth = maxHeigth, maxlength = maxLength });
             }
         }
     }

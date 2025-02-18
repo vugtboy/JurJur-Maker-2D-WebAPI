@@ -26,7 +26,7 @@ namespace JurJurMaker2D.WebApi.Repositories
             objects.Add(object2D);
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                await sqlConnection.ExecuteAsync("INSERT INTO [dbo.Object2D] (Id, prefabID, positionX, positionY, scaleX, scaleY, rotationZ, sortinglayer) VALUES (@Id, @prefabID, @positionX, @positionY, @scaleX, @scaleY, @rotationZ, @sortinglayer)", new { Id = id, prefabID = PrefabID, positionX = PositionX, positionY = PositionY, scaleX = ScaleX, scaleY = ScaleY, rotationZ = RotationZ, sortinglayer = SortingLayer });
+                await sqlConnection.ExecuteAsync("INSERT INTO dbo.Object2D (Id, prefabID, positionX, positionY, scaleX, scaleY, rotationZ, sortinglayer) VALUES (@Id, @prefabID, @positionX, @positionY, @scaleX, @scaleY, @rotationZ, @sortinglayer)", new { Id = id, prefabID = PrefabID, positionX = PositionX, positionY = PositionY, scaleX = ScaleX, scaleY = ScaleY, rotationZ = RotationZ, sortinglayer = SortingLayer });
             }
             //en dan naar de database schrijven
         }
@@ -36,7 +36,7 @@ namespace JurJurMaker2D.WebApi.Repositories
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                return await sqlConnection.QuerySingleOrDefaultAsync<Object2D>("SELECT * FROM [dbo.Object2D] WHERE Id = @Id", new {Id = id});
+                return await sqlConnection.QuerySingleOrDefaultAsync<Object2D>("SELECT * FROM dbo.Object2D WHERE Id = @Id", new {Id = id});
             }
         }
 
@@ -45,7 +45,7 @@ namespace JurJurMaker2D.WebApi.Repositories
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                return await sqlConnection.QueryAsync<Object2D>("SELECT * FROM [dbo.Object2D]");
+                return await sqlConnection.QueryAsync<Object2D>("SELECT * FROM dbo.Object2D");
             }
         }
 
@@ -54,7 +54,7 @@ namespace JurJurMaker2D.WebApi.Repositories
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                await sqlConnection.ExecuteAsync("DELETE * FROM [dbo.Object2D] WHERE Id = @Id", new { Id = id });
+                await sqlConnection.ExecuteAsync("DELETE * FROM dbo.Object2D WHERE Id = @Id", new { Id = id });
             }
         }
 
@@ -72,7 +72,7 @@ namespace JurJurMaker2D.WebApi.Repositories
             int SortingLayer = object2D.SortingLayer;
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                await sqlConnection.ExecuteAsync("UPATE [dbo.Object2D] SET (Id, prefabID, positionX, positionY, scaleX, scaleY, rotationZ, sortinglayer) VALUES (@Id, @prefabID, @positionX, @positionY, @scaleX, @scaleY, @rotationZ, @sortinglayer)", new { Id = id, prefabID = PrefabID, positionX = PositionX, positionY = PositionY, scaleX = ScaleX, scaleY = ScaleY, rotationZ = RotationZ, sortinglayer = SortingLayer });
+                await sqlConnection.ExecuteAsync("UPATE dbo.Object2D SET (Id, prefabID, positionX, positionY, scaleX, scaleY, rotationZ, sortinglayer) VALUES (@Id, @prefabID, @positionX, @positionY, @scaleX, @scaleY, @rotationZ, @sortinglayer)", new { Id = id, prefabID = PrefabID, positionX = PositionX, positionY = PositionY, scaleX = ScaleX, scaleY = ScaleY, rotationZ = RotationZ, sortinglayer = SortingLayer });
             }
         }
     }
