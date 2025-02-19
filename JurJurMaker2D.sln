@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JurJurMaker.Test", "..\..\..\..\BackUps voor solution\JurJurMaker2D.Test\JurJurMaker.Test.csproj", "{D066A8F4-4283-4435-A46C-C25FF01C7A52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JurJurMaker2D.WebApi", "..\..\..\..\BackUps voor solution\JurJurMaker2D.WebApi\JurJurMaker2D.WebApi.csproj", "{80935120-2FB3-472B-905B-A478F7F6C02D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D066A8F4-4283-4435-A46C-C25FF01C7A52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D066A8F4-4283-4435-A46C-C25FF01C7A52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D066A8F4-4283-4435-A46C-C25FF01C7A52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D066A8F4-4283-4435-A46C-C25FF01C7A52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80935120-2FB3-472B-905B-A478F7F6C02D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80935120-2FB3-472B-905B-A478F7F6C02D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80935120-2FB3-472B-905B-A478F7F6C02D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80935120-2FB3-472B-905B-A478F7F6C02D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
