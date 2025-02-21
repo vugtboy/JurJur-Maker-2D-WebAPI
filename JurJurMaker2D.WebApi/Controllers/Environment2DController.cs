@@ -18,6 +18,7 @@ public class Environment2DController : ControllerBase
     [HttpGet(Name = "GetEnvironment2D")]
     public async Task<IEnumerable<Environment2D?>> GetAll()
     {
+
         return await _repository.ReadAllAsync();
     }
 
