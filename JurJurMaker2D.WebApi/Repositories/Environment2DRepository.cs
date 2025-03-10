@@ -1,6 +1,9 @@
 ﻿using Dapper;
+using JurJurMaker2D.WebApi.Interfaces;
 using Microsoft.Data.SqlClient;
+using System.Collections.Generic;
 using System.Data.Common;
+using System.Numerics;
 using System.Reflection;
 namespace JurJurMaker2D.WebApi.Repositories
 {
@@ -19,10 +22,14 @@ namespace JurJurMaker2D.WebApi.Repositories
             string Name = environment2D.Name;
             int maxLength = environment2D.MaxLength;
             int maxHeigth = environment2D.MaxHeigth;
+            Guid PlayerId = environment2D.userId;
+            int Music = environment2D.music;
+            int Background = environment2D.background;
+            int Player = environment2D.player;
             environments.Add(environment2D);
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                await sqlConnection.ExecuteAsync("INSERT INTO dbo.Environment2D (Id, name, maxheigth, maxlength) VALUES (@Id, @name, @maxheigth, @maxlength)", new { Id = id, name = Name, maxheigth = maxHeigth, maxlength = maxLength });
+                await sqlConnection.ExecuteAsync("INSERT INTO dbo.Environment2D (Id, name, maxheigth, maxlength, playerId, music, background, player) VALUES (@Id, @name, @maxheigth, @maxlength, @playerId, @music, @background, @player)", new { Id = id, name = Name, maxheigth = maxHeigth, maxlength = maxLength, playerId = PlayerId, music = Music, background = Background, player = Player });
             }
             //en dan naar de database schrijven
         }
@@ -37,11 +44,11 @@ namespace JurJurMaker2D.WebApi.Repositories
         }
 
         //alle environments uitlezen
-        public async Task<IEnumerable<Environment2D?>> ReadAllAsync()
+        public async Task<IEnumerable<Environment2D?>> ReadAllAsync(Guid Userid)
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                return await sqlConnection.QueryAsync<Environment2D>("SELECT * FROM dbo.Environment2D");
+                return await sqlConnection.QueryAsync<Environment2D>("SELECT * FROM dbo.Environment2D Where playerId = @playerId", new {playerId = Userid});
             }
         }
 
@@ -50,22 +57,24 @@ namespace JurJurMaker2D.WebApi.Repositories
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                await sqlConnection.ExecuteAsync("DELETE * FROM dbo.Environment2D WHERE Id = @Id", new { Id = id });
+                await sqlConnection.ExecuteAsync("DELETE FROM dbo.Environment2D WHERE Id = @Id", new { Id = id });
             }
         }
 
         //een tabel updaten
-        public async void UpdateAsync(Environment2D environment)
+        public async void Update(Environment2D environment2D)
         {
             //tabel uitlezen op id
-            Guid id = environment.Id;
-            string Name = environment.Name;
-            int maxLength = environment.MaxLength;
-            int maxHeigth = environment.MaxHeigth;
-            environments.Add(environment);
+            Guid id = environment2D.Id;
+            int maxLength = environment2D.MaxLength;
+            int maxHeigth = environment2D.MaxHeigth;
+            int Music = environment2D.music;
+            int Background = environment2D.background;
+            int Player = environment2D.player;
+            environments.Add(environment2D);
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                await sqlConnection.ExecuteAsync("UPATE dbo.Environment2D SET (Id, name, maxheigth, maxlength) VALUES (@Id, @name, @maxheigth, @maxlength)", new { Id = id, name = Name, maxheigth = maxHeigth, maxlength = maxLength });
+                await sqlConnection.ExecuteAsync("UPDATE dbo.Environment2D SET maxheigth = @maxheigth, maxlength = @maxlength, music = @music, background = @background, player = @player WHERE Id = @Id", new { Id = id, maxheigth = maxHeigth, maxlength = maxLength, music = Music, background = Background, player = Player });
             }
         }
     }
