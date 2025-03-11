@@ -2,7 +2,6 @@ using JurJurMaker2D.WebApi.Interfaces;
 using JurJurMaker2D.WebApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
 namespace JurJurMaker2D.WebApi.Controllers;
 
 
@@ -11,12 +10,10 @@ namespace JurJurMaker2D.WebApi.Controllers;
 [Route("[controller]")]
 public class Environment2DController : ControllerBase
 {
-    private readonly ILogger<Environment2DController> _logger;
     private readonly IEnvironment2DRepository _repository;
     private readonly IAuthenticationService _authentication;
-    public Environment2DController(ILogger<Environment2DController> logger, IEnvironment2DRepository repository, IAuthenticationService authentication)
+    public Environment2DController(IEnvironment2DRepository repository, IAuthenticationService authentication)
     {
-        _logger = logger;
         _repository = repository;
         _authentication = authentication;
     }
@@ -41,17 +38,17 @@ public class Environment2DController : ControllerBase
     }
 
     [HttpPost(Name = "CreateEnvironment2D")]
-    public ActionResult Create(Environment2D environment2D)
+    public async Task<ActionResult> CreateAsync(Environment2D environment2D)
     {
-        _repository.CreateAsync(environment2D);
-        return Created();
+        await _repository.CreateAsync(environment2D);
+        return CreatedAtAction(nameof(Get), new { id = environment2D.Id }, environment2D);
     }
 
     [HttpDelete(Name = "DeleteEnvironment2D")]
-    public ActionResult Delete(Guid id)
+    public async Task<ActionResult> DeleteAsync(Guid id)
     {
         _repository.DeleteAsync(id);
-        return Ok();
+        return NoContent();
     }
 
     [HttpGet("GetUserId")]

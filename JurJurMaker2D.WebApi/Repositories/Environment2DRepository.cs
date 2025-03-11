@@ -16,7 +16,7 @@ namespace JurJurMaker2D.WebApi.Repositories
         {
             this.sqlConnectionString = sqlConnectionString;
         }
-        public async void CreateAsync(Environment2D environment2D)
+        public async Task CreateAsync(Environment2D environment2D)
         {
             Guid id = environment2D.Id;
             string Name = environment2D.Name;

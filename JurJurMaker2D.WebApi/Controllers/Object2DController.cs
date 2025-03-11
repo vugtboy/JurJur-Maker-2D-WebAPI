@@ -7,11 +7,9 @@ namespace JurJurMaker2D.WebApi.Controllers;
 [Route("[controller]")]
 public class Object2DController : ControllerBase
 {
-    private readonly ILogger<Object2DController> _logger;
     private readonly IObject2DRepository _repository;
-    public Object2DController(ILogger<Object2DController> logger, IObject2DRepository repository)
+    public Object2DController(IObject2DRepository repository)
     {
-        _logger = logger;
         _repository = repository;
     }
 
@@ -27,11 +25,11 @@ public class Object2DController : ControllerBase
         return await _repository.ReadAsync(id);
     }
 
-    [HttpPost(Name = "GetObject2D")]
-    public ActionResult Create(Object2D Object2D)
+    [HttpPost(Name = "CreateObject2D")]
+    public async Task<ActionResult> CreateAsync(Object2D Object2D)
     {
-        _repository.CreateAsync(Object2D);
-        return Created();
+        await _repository.CreateAsync(Object2D);
+        return CreatedAtAction(nameof(Get), new { id = Object2D.Id }, Object2D); 
     }
 
     [HttpPut(Name = "UpdateObject2D")]
@@ -42,9 +40,9 @@ public class Object2DController : ControllerBase
     }
 
     [HttpDelete(Name = "DeleteObject2D")]
-    public ActionResult Delete(Guid id)
+    public async Task<ActionResult> DeleteAsync(Guid id)
     {
         _repository.DeleteAsync(id);
-        return Ok();
+        return NoContent();
     }
 }
