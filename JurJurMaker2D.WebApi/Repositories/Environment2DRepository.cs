@@ -58,6 +58,7 @@ namespace JurJurMaker2D.WebApi.Repositories
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
                 await sqlConnection.ExecuteAsync("DELETE FROM dbo.Environment2D WHERE Id = @Id", new { Id = id });
+                await sqlConnection.ExecuteAsync("DELETE FROM dbo.Object2D WHERE Id = @Id", new { Id = id });
             }
         }
 
