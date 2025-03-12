@@ -39,7 +39,7 @@ namespace JurJurMaker.Test
             Assert.Equal(newObject2D.Id, createdObject.Id);
         }
 
-        //Voor een of meerdere nieuwe werelden te maken zoals in het voorbeeld
+        //Voor een nieuwe wereld te maken
 
         private Object2D GenerateRandomObject2D(Guid environmentId)
         {

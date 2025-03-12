@@ -33,7 +33,7 @@ namespace JurJurMaker.Test
             
             var createdEnvironment = createdAtActionResult.Value as Environment2D;
 
-            //ASSERT kijken of de test geslaagd is door te controlleren of het resultaat niet null is en input met output te vergelijken
+            //ASSERT kijken of de test geslaagd als er een resultaat is, en deze overeenkomt met de testwaardes dan is de test geslaagd
             Assert.NotNull(createdEnvironment);
             
             Assert.Equal(newEnvironment.Id, createdEnvironment.Id);
