@@ -10,7 +10,7 @@ namespace JurJurMaker.Test
         [Fact]
         public async Task Get_EnvironmentReturnsCorrectEnvironment()
         {
-            // ARRANGE
+            // ARRANGE niewe environment maken
             var environmentId = Guid.NewGuid();
             var rnd = new Random();
             var expectedEnvironment = new Environment2D
@@ -30,14 +30,14 @@ namespace JurJurMaker.Test
 
             var environmentController = new Environment2DController(environmentRepository.Object, null);
 
-            // ACT
+            // ACT de environment uit de controller halen zogenaamd
             var response = await environmentController.Get(environmentId);
 
-            // ASSERT
-            var returnedEnvironment = Assert.IsType<Environment2D>(response);  // Directly assert the returned object is of type Environment2D
-            Assert.Equal(expectedEnvironment.Id, returnedEnvironment.Id);  // Ensure the returned Environment2D's ID matches the expected ID
-            Assert.Equal(expectedEnvironment.Name, returnedEnvironment.Name);  // Ensure the returned Name matches
-            Assert.Equal(expectedEnvironment.MaxLength, returnedEnvironment.MaxLength);  // Ensure MaxLength matches
+            // ASSERT als alles goed is gegaan komen de juiste waarden eruit, en is de environment gelijk aan de eringestopte environment
+            var returnedEnvironment = Assert.IsType<Environment2D>(response);
+            Assert.Equal(expectedEnvironment.Id, returnedEnvironment.Id); 
+            Assert.Equal(expectedEnvironment.Name, returnedEnvironment.Name);
+            Assert.Equal(expectedEnvironment.MaxLength, returnedEnvironment.MaxLength);
             Assert.Equal(expectedEnvironment.MaxHeigth, returnedEnvironment.MaxHeigth);
         }
     }
